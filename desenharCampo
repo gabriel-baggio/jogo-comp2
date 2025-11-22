@@ -1,0 +1,15 @@
+void desenharCampo(char campos[LINHAS][COLUNAS], char posicao[LINHAS][COLUNAS]){
+
+    for(int i = 0; i < LINHAS; i++){
+        for(int j = 0; j < COLUNAS; j++){
+            if(posicao[i][j] == 'o'){
+                printf("%c",posicao[i][j]);    
+            }else{
+                printf("%c",campos[i][j]);
+            }
+        }
+        printf("\n");
+    }
+
+
+}
