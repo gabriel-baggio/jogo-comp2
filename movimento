@@ -1,0 +1,93 @@
+void movimento(char campos[LINHAS][COLUNAS], int velocidadeX[7], int velocidadeY[7], int personagem[2], char icone[7]){
+
+    if(kbhit()){
+        switch (getch()){
+            //movimentaçao jogador 1
+        case 's':
+            velocidadeY[personagem[0]] = 2;
+            velocidadeX[personagem[0]] = 0;
+            break;
+
+        case 'w':
+            velocidadeY[personagem[0]] = -2;
+            velocidadeX[personagem[0]] = 0;
+            break;
+
+        case 'a':
+            velocidadeX[personagem[0]] = -2;
+            velocidadeY[personagem[0]] = 0;
+            break;
+
+        case 'd':
+            velocidadeX[personagem[0]] = 2;
+            velocidadeY[personagem[0]] = 0;
+            break;
+
+            //mudança de controle entre personagens
+        case 'e':
+            personagem[0]++;
+            if (personagem[0] == 3){
+                personagem[0] = 0;
+            }
+            velocidadeX[personagem[0]] = 0;
+            velocidadeY[personagem[0]] = 0;
+            break;
+
+            //movimento jogador 2
+        case '2':
+            velocidadeY[personagem[1]] = 2;
+            velocidadeX[personagem[1]] = 0;
+            break;
+
+        case '5':
+            velocidadeY[personagem[1]] = -2;
+            velocidadeX[personagem[1]] = 0;
+            break;
+
+        case '1':
+            velocidadeX[personagem[1]] = -2;
+            velocidadeY[personagem[1]] = 0;
+            break;
+
+        case '3':
+            velocidadeX[personagem[1]] = 2;
+            velocidadeY[personagem[1]] = 0;
+            break;
+
+            //mudança de controle entre personagens
+        case '6':
+            personagem[1]++;
+            if (personagem[1] == 7){
+                personagem[1] = 3;
+            }
+            velocidadeX[personagem[1]] = 0;
+            velocidadeY[personagem[1]] = 0;
+            break;
+
+        default:
+            break;
+        }
+    }
+
+    for(int i = 0; i < LINHAS-1; i++){
+        for(int j = 0; j < COLUNAS-1; j++){
+            if(campos[i][j] == icone[personagem[0]] && campos[i+velocidadeY[personagem[0]]][j+velocidadeX[personagem[0]]] == ' '){
+                campos[i][j] = ' ';
+                campos[i+velocidadeY[personagem[0]]][j+velocidadeX[personagem[0]]] = icone[personagem[0]];
+                i = LINHAS;
+                j = COLUNAS;
+            } 
+        }
+    }
+
+    for(int i = 0; i < LINHAS-1; i++){
+        for(int j = 0; j < COLUNAS-1; j++){
+            if(campos[i][j] == icone[personagem[1]] && campos[i+velocidadeY[personagem[1]]][j+velocidadeX[personagem[1]]] == ' '){
+                campos[i][j] = ' ';
+                campos[i+velocidadeY[personagem[1]]][j+velocidadeX[personagem[1]]] = icone[personagem[1]];
+                return;
+            } 
+        }
+    }
+
+}
