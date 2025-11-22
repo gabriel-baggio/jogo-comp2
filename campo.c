@@ -1,0 +1,31 @@
+#include "campo.h"
+
+void preencherCampo(char campo1[LINHAS][COLUNAS]){
+
+    for(int i = 0; i < COLUNAS; i++){
+        campo1[0][i] = '=';
+        campo1[LINHAS-1][i] = '=';
+    }
+    for(int i = 1; i < LINHAS-1; i++){
+        if((LINHAS-2)/3 < i && (2*(LINHAS-2))/3 >= i){
+            campo1[i][0] = ' ';
+            campo1[i][COLUNAS-1] = ' ';
+        }else{
+        campo1[i][0] = '|';
+        campo1[i][COLUNAS-1] = '|';
+        }
+        for(int j = 1; j < COLUNAS-1; j++){
+            campo1[i][j] = ' ';
+        }
+    }
+}
+
+void desenharCampo(char campos[LINHAS][COLUNAS]){
+
+    for(int i = 0; i < LINHAS; i++){
+        for(int j = 0; j < COLUNAS; j++){
+            printf("%c",campos[i][j]);
+        }
+        printf("\n");
+    }
+}
