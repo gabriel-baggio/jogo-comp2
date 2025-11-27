@@ -498,7 +498,7 @@ int main(){
     int velocidadeX[7], velocidadeY[7], personagem[2], velocidadeBola[2];
     int gol[2], reset = 0, totalGol = 0, chute[2], rank[6];
     int tempo_jogo = 0, mapa = 0;
-    int tempo_inicial;
+    int tempo_inicial = time(0);
     
     ranking(rank, gol);
     printMenu();
@@ -600,6 +600,7 @@ int main(){
         break;
 
         case'3':
+            iniciarVetores(personagem, gol, velocidadeBola, velocidadeX, velocidadeY, icone, chute);
             //retoma o jogo de onde parou
             jogoSalvo(&mapa, &tempo_jogo, gol);
             if(mapa == 1){
@@ -611,9 +612,7 @@ int main(){
             }
             iniciarIcones(campos, icone);
             
-            while (tempo_jogo < TEMPO_MAXIMO){   
-                printf("%d",tempo_jogo);
-            scanf("%d",&mapa);
+            while (tempo_jogo < TEMPO_MAXIMO){
                         Sleep(0033);
                         //coloca tudo no local inicial caso um gol tenha sido feito
                         if(totalGol != gol[0] + gol[1]){
